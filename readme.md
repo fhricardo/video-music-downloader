@@ -71,9 +71,8 @@ Certifique-se de ter o **Python 3.10 ou superior** instalado em sua máquina.
 Caso queira gerar um arquivo executável para rodar no Windows de forma portátil (sem precisar do terminal ou do Python instalado), você pode compilar o projeto utilizando o **PyInstaller**.
 
 1. Instale o PyInstaller no seu ambiente virtual:
-   ```bash
+```bash
    pip install pyinstaller
-
 ```
 
 2. Execute o comando de compilação apontando para o seu script e o seu ícone (`vmd-icon.ico`):
@@ -81,7 +80,6 @@ Caso queira gerar um arquivo executável para rodar no Windows de forma portáti
 pyinstaller --noconsole --onefile --name="Video Music Downloader" --icon="vmd-icon.ico" app.py
 
 ```
-
 
 3. Após o término do processo, a pasta **`dist/`** será criada e dentro dela estará o seu executável pronto para uso ou distribuição.
 

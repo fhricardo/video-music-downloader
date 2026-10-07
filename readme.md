@@ -16,6 +16,7 @@ O **Video Music Downloader** é uma aplicação desktop moderna e intuitiva dese
 ## ✨ Funcionalidades
 
 * **Download Híbrido:** Escolha entre baixar o vídeo completo em alta resolução (`.mp4`) ou apenas a faixa de áudio (`.mp3`).
+* **Proteção e PO Token (Proof of Origin):** Suporte nativo ao PO Token do YouTube para contornar bloqueios de bot, com geração automática via BotGuard (Node.js) e interface para inserção de tokens manuais.
 * **Interface Moderna:** Desenvolvida com `CustomTkinter`, oferecendo suporte nativo ao Modo Escuro/Claro (Dark/Light Mode) baseado nas configurações do seu Windows.
 * **Conversão Inteligente:** Extrai e renomeia o fluxo de áudio nativo sem engasgar e sem travar a interface.
 * **Download em Segundo Plano (Threading):** A barra de progresso e a interface gráfica continuam fluidas e responsivas enquanto o download acontece em paralelo.
@@ -28,9 +29,9 @@ O **Video Music Downloader** é uma aplicação desktop moderna e intuitiva dese
 O projeto foi construído utilizando as seguintes bibliotecas do ecossistema Python:
 
 * **[CustomTkinter](https://github.com/TomsOpts/CustomTkinter):** Evolução da biblioteca nativa Tkinter, utilizada para criar o design moderno e arredondado dos componentes visuais.
-* **[Pytubefix](https://github.com/JuanBindez/pytubefix):** Biblioteca robusta e atualizada para interagir com a API do YouTube, substituindo com sucesso o antigo `pytube`.
+* **[Pytubefix](https://github.com/JuanBindez/pytubefix):** Biblioteca robusta e atualizada para interagir com a API do YouTube, com suporte a PO Tokens e client WEB.
 * **Threading (Nativa):** Módulo utilizado para assincronismo, evitando o congelamento da janela durante o download de arquivos pesados.
-* **Webbrowser (Nativa):** Utilizada para injetar o comportamento de link clicável que redireciona o usuário para o repositório do GitHub.
+* **Webbrowser (Nativa):** Utilizada para injetar o comportamento de link clicável que redireciona o usuário para o repositório do GitHub e documentações.
 
 ---
 
@@ -43,7 +44,7 @@ Certifique-se de ter o **Python 3.10 ou superior** instalado em sua máquina.
 
 1.  **Clonar o Repositório:**
     ```bash
-    git clone [https://github.com/fhricardo/video-music-downloader.git](https://github.com/fhricardo/video-music-downloader.git)
+    git clone https://github.com/fhricardo/video-music-downloader.git
     cd video-music-downloader
     ```
 
@@ -56,7 +57,7 @@ Certifique-se de ter o **Python 3.10 ou superior** instalado em sua máquina.
 
 3.  **Instalar as Dependências:**
     ```bash
-    pip install customtkinter pytubefix
+    pip install -r requirements.txt
     ```
 
 4.  **Iniciar a Aplicação:**
@@ -66,22 +67,30 @@ Certifique-se de ter o **Python 3.10 ou superior** instalado em sua máquina.
 
 ---
 
+## 🛡️ Sobre o PO Token (Proof of Origin)
+
+O YouTube recentemente começou a exigir um **PO Token** gerado pelo BotGuard para autenticar clientes e prevenir requisições automatizadas/robôs. 
+
+- **Geração Automática (Padrão):** O aplicativo utiliza o cliente `WEB` do `pytubefix` em conjunto com `nodejs-wheel-binaries` para gerar os tokens de autenticação automaticamente em segundo plano.
+- **Configuração Manual:** Caso precise fornecer seu próprio PO Token e `visitorData` extraídos do navegador, basta acessar no menu do aplicativo: **Configurações > Configurar PO Token (YouTube)...** e preencher os campos.
+
+---
+
 ## 📦 Compilação para Executável (.exe)
 
 Caso queira gerar um arquivo executável para rodar no Windows de forma portátil (sem precisar do terminal ou do Python instalado), você pode compilar o projeto utilizando o **PyInstaller**.
 
 1. Instale o PyInstaller no seu ambiente virtual:
 ```bash
-   pip install pyinstaller
+pip install pyinstaller
 ```
 
-2. Execute o comando de compilação apontando para o seu script e o seu ícone (`vmd-icon.ico`):
+2. Execute o comando de compilação utilizando o arquivo de especificações (`Video Music Downloader.spec`):
 ```bash
-pyinstaller --noconsole --onefile --name="Video Music Downloader" --icon="vmd-icon.ico" app.py
-
+pyinstaller "Video Music Downloader.spec"
 ```
 
-3. Após o término do processo, a pasta **`dist/`** será criada e dentro dela estará o seu executável pronto para uso ou distribuição.
+3. Após o término do processo, a pasta **`dist/`** conterá o executável pronto para distribuição.
 
 ---
 

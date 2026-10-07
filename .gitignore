@@ -11,3 +11,6 @@ build/
 # Caches do Python
 __pycache__/
 *.pyc
+
+# Configurações locais / Tokens do usuário
+config.json

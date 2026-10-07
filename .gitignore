@@ -5,7 +5,7 @@ ENV/
 
 # Arquivos gerados pelo PyInstaller (Compilação)
 build/
-dist/
+# dist/
 *.spec
 
 # Caches do Python
